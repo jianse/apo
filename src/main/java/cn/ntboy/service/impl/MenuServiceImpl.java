@@ -2,6 +2,7 @@ package cn.ntboy.service.impl;
 
 import cn.ntboy.model.Menus;
 import cn.ntboy.model.MenusExample;
+import cn.ntboy.model.combination.MenusAndTypes;
 import cn.ntboy.model.vo.PageVO;
 import cn.ntboy.repository.MenusMapper;
 import cn.ntboy.repository.MenusMapperCustom;
@@ -58,6 +59,30 @@ public class MenuServiceImpl implements MenuService {
         pageVO.setData(menus);
 
         return ServiceResultState.wrap(200,pageVO);
+    }
+
+    @Override
+    public ServiceResultState<PageVO<MenusAndTypes>> getAllMenusWithType(PageVO page) {
+        PageHelper.startPage(page.getPageNum(),page.getPageSize());
+        List<MenusAndTypes> menus = menusMapperCustom.selectAllMenusAndTypes();
+
+        PageInfo<MenusAndTypes> pageInfo = PageInfo.of(menus);
+
+        PageVO<MenusAndTypes> pageVO = new PageVO<>();
+
+        try {
+            BeanUtils.copyProperties(pageVO,pageInfo);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            log.error("copy properties error",e);
+//            e.printStackTrace();
+        }
+
+        pageVO.setTotal(pageInfo.getTotal());
+
+        pageVO.setData(menus);
+
+        return ServiceResultState.wrap(200,pageVO);
+
     }
 
     @Transactional

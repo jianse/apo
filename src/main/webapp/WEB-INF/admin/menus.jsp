@@ -63,25 +63,25 @@
                             <c:forEach items="${menusData.data}" var="item">
                         <tr>
                             <td class="line_table" align="center">
-                                <a href="${pageContext.request.contextPath}/admin/menus_update.jsp?id=${item.id}">${item.name}</a>
+                                <a href="${pageContext.request.contextPath}/admin/menus_update.jsp?id=${item.menu.id}">${item.menu.name}</a>
                             </td>
                             <td class="line_table" align="center">
-                                <a href="${pageContext.request.contextPath}${item.imgpath==null?"/img/default.png":item.imgpath}" target="_blank">
-                                    <img src="${pageContext.request.contextPath}${item.imgpath==null?"/img/default.png":item.imgpath}" width="30" height="30" alt="${item.name}">
+                                <a href="${pageContext.request.contextPath}${item.menu.imgpath==null?"/img/default.png":item.menu.imgpath}" target="_blank">
+                                    <img src="${pageContext.request.contextPath}${item.menu.imgpath==null?"/img/default.png":item.menu.imgpath}" width="30" height="30" alt="${item.menu.name}">
                                 </a>
                             </td>
-                            <td class="line_table" align="center"><span class="left_txt">${item.burden}</span></td>
-                            <td class="line_table" align="center"><span class="left_txt">${item.typeid}</span></td>
-                            <td class="line_table" align="center"><span class="left_txt">${item.brief}</span></td>
-                            <td class="line_table" align="center"><span class="left_txt">${item.price}</span></td>
-                            <td class="line_table" align="center"><span class="left_txt">${item.sums}</span></td>
-                            <td class="line_table" align="center"><span class="left_txt">${item.price1}</span></td>
-                            <td class="line_table" align="center"><span class="left_txt">${item.sums1}</span></td>
+                            <td class="line_table" align="center"><span class="left_txt">${item.menu.burden}</span></td>
+                            <td class="line_table" align="center"><span class="left_txt">${item.type.name}</span></td>
+                            <td class="line_table" align="center"><span class="left_txt">${item.menu.brief}</span></td>
+                            <td class="line_table" align="center"><span class="left_txt">${item.menu.price}</span></td>
+                            <td class="line_table" align="center"><span class="left_txt">${item.menu.sums}</span></td>
+                            <td class="line_table" align="center"><span class="left_txt">${item.menu.price1}</span></td>
+                            <td class="line_table" align="center"><span class="left_txt">${item.menu.sums1}</span></td>
                             <td class="line_table" align="center">
-                                <a href="${pageContext.request.contextPath}/admin/menus_update.jsp?id=${item.id}">修改</a>
+                                <a href="${pageContext.request.contextPath}/admin/menus_update.jsp?id=${item.menu.id}">修改</a>
                             </td>
                             <td class="line_table" align="center">
-                                <a href="${pageContext.request.contextPath}/admin/menus_delete.jsp?id=${item.id}">删除</a>
+                                <a href="${pageContext.request.contextPath}/admin/menus_delete.jsp?id=${item.menu.id}">删除</a>
                             </td>
                         </tr>
                         </c:forEach>

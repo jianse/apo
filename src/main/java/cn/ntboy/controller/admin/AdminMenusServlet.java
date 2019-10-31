@@ -1,6 +1,7 @@
 package cn.ntboy.controller.admin;
 
 import cn.ntboy.model.Menus;
+import cn.ntboy.model.combination.MenusAndTypes;
 import cn.ntboy.model.vo.PageVO;
 import cn.ntboy.service.MenuService;
 import cn.ntboy.service.ServiceResultState;
@@ -31,8 +32,8 @@ public class AdminMenusServlet extends HttpServlet {
         page.setPageNum(pageNumI);
         page.setPageSize(pageSizeI);
 
-        ServiceResultState<PageVO<Menus>> allMenus = menuService.getAllMenus(page);
-        PageVO<Menus> menusData = allMenus.getPayload();
+        ServiceResultState<PageVO<MenusAndTypes>> allMenus = menuService.getAllMenusWithType(page);
+        PageVO<MenusAndTypes> menusData = allMenus.getPayload();
         request.setAttribute("menusData", menusData);
         request.getRequestDispatcher("/WEB-INF/admin/menus.jsp").forward(request,response);
     }
