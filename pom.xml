@@ -37,6 +37,7 @@
             <groupId>org.fusesource.jansi</groupId>
             <artifactId>jansi</artifactId>
             <version>1.18</version>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -55,6 +56,7 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.7.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- 数据库驱动-->
@@ -63,6 +65,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.18</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- orm 框架-->
@@ -71,6 +74,7 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.5.3</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- 分页插件-->
@@ -78,6 +82,7 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>5.1.10</version>
+            <scope>compile</scope>
         </dependency>
 
 
@@ -94,6 +99,7 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.4</version>
+            <scope>compile</scope>
         </dependency>
 
 
@@ -103,6 +109,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- slf4j 桥接器 详情参考 https://www.cnblogs.com/zcy_soft/p/3566208.html-->
@@ -111,6 +118,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${slf4j.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- log4j2-->
@@ -119,6 +127,7 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4j.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
@@ -126,6 +135,7 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- 用于与slf4j保持桥接-->
@@ -134,6 +144,7 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- log4j web项目支持-->
@@ -142,36 +153,39 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-web</artifactId>
             <version>${log4j.version}</version>
+            <scope>compile</scope>
         </dependency>
 
-<!-- jstl 模板库-->
+        <!-- jstl 模板库-->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+            <scope>provided</scope>
         </dependency>
 
-<!-- el 表达式库-->
+        <!-- el 表达式库-->
         <!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
             <version>3.0.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-        <dependency>
+        <!--<dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
-        </dependency>
+        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-        <dependency>
+<!--         https://mvnrepository.com/artifact/commons-io/commons-io-->
+       <!-- <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
-        </dependency>
+        </dependency>-->
 
 
         <!-- lombok-->

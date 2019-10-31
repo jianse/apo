@@ -98,7 +98,7 @@
 								<td class="line_table" align="right" ><span
 									class="left_bt2">展示图片</span>：</td>
 								<td class="line_table"  align="left"><img
-									src="../img/m_fenzhengrou.gif" alt="${item.name}">
+									src="${pageContext.request.contextPath}/images/${item.imgpath}" alt="${item.name}">
 									<input type="hidden" name="id" value="${type.id}"/></td>
 							</tr>
 

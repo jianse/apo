@@ -41,4 +41,8 @@ public class FileUtils {
         }
         return newName;
     }
+
+    public static String filenameExtensionCombine(@NonNull String filename,@NonNull String extension){
+        return filename+(extension.startsWith(".")?extension:"."+extension);
+    }
 }

@@ -6,6 +6,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ServiceResultState<T> {
+    public ServiceResultState(Integer stateCode, T payload) {
+        this.stateCode =stateCode;
+        this.payload =payload;
+    }
+
     public static<T> ServiceResultState<T> wrap(Integer stateCode, T payload){
         return new ServiceResultState<T>(stateCode,payload);
     }
@@ -19,4 +24,9 @@ public class ServiceResultState<T> {
      * 业务负载数据
      */
     private T payload;
+
+    /**
+     * 业务层提供的信息
+     */
+    private String message = "";
 }

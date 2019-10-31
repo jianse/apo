@@ -1,5 +1,7 @@
 package cn.ntboy.util.tx;
 
+import lombok.NoArgsConstructor;
+
 import java.lang.annotation.*;
 
 @Inherited

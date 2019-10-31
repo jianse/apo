@@ -2,6 +2,7 @@ package cn.ntboy.controller.admin;
 
 import cn.ntboy.model.Menus;
 import cn.ntboy.model.Types;
+import cn.ntboy.service.FileService;
 import cn.ntboy.service.MenuService;
 import cn.ntboy.service.ServiceResultState;
 import cn.ntboy.service.TypeService;
@@ -34,25 +35,30 @@ public class AdminNewMenuServlet extends HttpServlet {
 
     private MenuService menuService = ServiceFactory.getInstance().getService(MenuService.class);
     private TypeService typeService = ServiceFactory.getInstance().getService(TypeService.class);
+    private FileService fileService = ServiceFactory.getInstance().getService(FileService.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 获取multipart中的图片
         Part img = request.getPart("img");
-        log.debug("file name : {}",img.getSubmittedFileName());
-        // 使用uuid生成新的图片名
-        UUID uuid = UUID.randomUUID();
-        String filename = FileUtils.renameFile(img.getSubmittedFileName(),uuid.toString());
+//        log.debug("file name : {}",img.getSubmittedFileName());
+//        // 使用uuid生成新的图片名
+//        UUID uuid = UUID.randomUUID();
+//        String filename = FileUtils.renameFile(img.getSubmittedFileName(),uuid.toString());
+//
+//        // 指定文件的存储路径
+//        String appRelativePath = "/img/"+filename;
+//
+//        // 通过web应用的相对路径找到文件系统的绝对路径
+//        String realPath = getServletContext().getRealPath(appRelativePath);
+//        log.debug("write to : {}",realPath);
+//
+//        // 写入文件
+//        img.write(realPath);
 
-        // 指定文件的存储路径
-        String appRelativePath = "/img/"+filename;
+        byte[] bytes = img.getInputStream().readAllBytes();
 
-        // 通过web应用的相对路径找到文件系统的绝对路径
-        String realPath = getServletContext().getRealPath(appRelativePath);
-        log.debug("write to : {}",realPath);
-
-        // 写入文件
-        img.write(realPath);
+        ServiceResultState<String> resultState = fileService.saveFileUseGenerateName(bytes, FileUtils.getFileExtension(img.getSubmittedFileName()));
 
         // 解析其余的表单信息
         Map<String, String[]> parameterMap = request.getParameterMap();
@@ -66,7 +72,7 @@ public class AdminNewMenuServlet extends HttpServlet {
         log.debug("new menus {}",menus);
 
         // 设置新生成的文件路径
-        menus.setImgpath(appRelativePath);
+        menus.setImgpath(resultState.getPayload());
 
         // 新建
         // todo : 判断新建是否成功

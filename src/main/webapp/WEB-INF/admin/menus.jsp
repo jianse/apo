@@ -66,8 +66,8 @@
                                 <a href="${pageContext.request.contextPath}/admin/menus_update.jsp?id=${item.menu.id}">${item.menu.name}</a>
                             </td>
                             <td class="line_table" align="center">
-                                <a href="${pageContext.request.contextPath}${item.menu.imgpath==null?"/img/default.png":item.menu.imgpath}" target="_blank">
-                                    <img src="${pageContext.request.contextPath}${item.menu.imgpath==null?"/img/default.png":item.menu.imgpath}" width="30" height="30" alt="${item.menu.name}">
+                                <a href="${pageContext.request.contextPath}${item.menu.imgpath==null?"/img/default.png":"/images/"+item.menu.imgpath}" target="_blank">
+                                    <img src="${pageContext.request.contextPath}${item.menu.imgpath==null?"/img/default.png":"/images/"+item.menu.imgpath}" width="30" height="30" alt="${item.menu.name}">
                                 </a>
                             </td>
                             <td class="line_table" align="center"><span class="left_txt">${item.menu.burden}</span></td>
