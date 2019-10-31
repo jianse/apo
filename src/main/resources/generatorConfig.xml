@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 引用数据库连接配置文件-->
+    <properties resource="dbcp.properties"/>
+
+    <!--指定mybatis版本-->
+    <context id="apo" targetRuntime="MyBatis3">
+
+        <!-- 配置数据库连接相关参数 -->
+        <jdbcConnection driverClass="${driverClassName}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- 配置类型解析 -->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 指定生成的实体类所在的包-->
+        <javaModelGenerator targetPackage="cn.ntboy.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 指定Mapper接口的存放位置-->
+        <sqlMapGenerator targetPackage="cn.ntboy.repository"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 指定xml配置文件的存放位置，这里设置xml与接口分开放置，xml作为资源放在资源目录下-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.ntboy.repository"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 下面简单配置扫描哪些表-->
+        <table tableName="apo.admin">
+
+        </table>
+
+        <table tableName="apo.menus"  >
+        </table>
+
+        <table tableName="apo.notice">
+
+        </table>
+
+        <table tableName="apo.orders">
+
+        </table>
+
+        <table  tableName="apo.types">
+
+        </table>
+
+        <table  tableName="apo.users">
+
+        </table>
+
+    </context>
+</generatorConfiguration>

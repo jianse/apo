@@ -1,0 +1,62 @@
+package cn.ntboy.util.tx;
+
+import cn.ntboy.util.InjectMapper;
+import cn.ntboy.util.SqlSessionUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.SqlSession;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
+@Slf4j
+public class TransactionHandler implements InvocationHandler {
+
+    private Object target =null;
+    private Map<Method,Class<?>> injectMap = new HashMap<>();
+
+    public TransactionHandler(Object target) {
+        this.target = target;
+        Method[] methods = target.getClass().getMethods();
+        for (Method method : methods) {
+            // todo: one param only
+            if (method.isAnnotationPresent(InjectMapper.class)) {
+                Class<?>[] parameterTypes = method.getParameterTypes();
+                injectMap.put(method,parameterTypes[0]);
+            }
+        }
+    }
+
+    @Override
+    public synchronized Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        Object ret =null;
+        try(SqlSession session = SqlSessionUtil.getSqlSessionFactory().openSession(false)){
+            // set mapper values
+            injectMap.forEach((k,v)->{
+                try {
+                    k.invoke(target,session.getMapper(v));
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    log.error("could not inject mapper.",e);
+//                    e.printStackTrace();
+                }
+            });
+            try {
+                ret = method.invoke(target,args);
+
+                if (method.isAnnotationPresent(Transactional.class)) {
+                    session.commit(true);
+                }else {
+                    session.commit();
+                }
+            }catch (Exception any){
+                session.rollback();
+                log.error("rollback for exception",any);
+            }
+
+        }
+        return ret;
+    }
+
+}
