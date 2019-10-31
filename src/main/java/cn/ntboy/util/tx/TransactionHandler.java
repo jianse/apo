@@ -11,6 +11,11 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * jdk动态代理类, 代理Service实现类, 处理注入和事务
+ * @author qiang
+ * @version 0.0.2
+ */
 @Slf4j
 public class TransactionHandler implements InvocationHandler {
 
@@ -32,6 +37,15 @@ public class TransactionHandler implements InvocationHandler {
     @Override
     public synchronized Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object ret =null;
+
+        // if there is nothing to inject
+        // so that is no need for transaction control
+        if (injectMap.isEmpty()){
+            // invoke directly
+            ret = method.invoke(target,args);
+            return ret;
+        }
+
         try(SqlSession session = SqlSessionUtil.getSqlSessionFactory().openSession(false)){
             // set mapper values
             injectMap.forEach((k,v)->{
