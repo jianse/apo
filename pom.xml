@@ -31,6 +31,15 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- windows 下的ansi转义支持-->
+        <!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+        <dependency>
+            <groupId>org.fusesource.jansi</groupId>
+            <artifactId>jansi</artifactId>
+            <version>1.18</version>
+        </dependency>
+
+
         <!-- servlet 4.0-->
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
@@ -192,6 +201,7 @@
                     <include>log4j2.xml</include>
                     <include>dbcp.properties</include>
                     <include>mybatis-config.xml</include>
+                    <include>log4j2.component.properties</include>
                     <include>cn/ntboy/repository/*.xml</include>
                 </includes>
             </resource>
